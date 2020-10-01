@@ -179,6 +179,12 @@ public class Main extends Application {
         gc.fillOval(foodX * cornerSize, foodY * cornerSize, cornerSize, cornerSize);
 
         //snake
+        for (Corner c:snake) {
+            gc.setFill(Color.LIGHTGREEN);
+            gc.fillRect(c.x*cornerSize, c.y*cornerSize, cornerSize - 1, cornerSize - 1);
+            gc.setFill(Color.GREEN);
+            gc.fillRect(c.x*cornerSize, c.y*cornerSize, cornerSize - 2, cornerSize - 2);
+        }
 
     }
 
