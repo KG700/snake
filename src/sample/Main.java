@@ -64,7 +64,7 @@ public class Main extends Application {
                 }
                 if (now - lastTick > 1000000000 / speed) {
                     lastTick = now;
-                    //
+                    tick(gc);
                 }
             }
         }.start();
@@ -106,7 +106,7 @@ public class Main extends Application {
             return;
         }
 
-        for (int i = snake.size() - 1; i > i; i--) {
+        for (int i = snake.size() - 1; i >= 1; i--) {
             snake.get(i).x = snake.get(i-1).x;
             snake.get(i).y = snake.get(i-1).y;
         }
@@ -126,7 +126,7 @@ public class Main extends Application {
                 break;
             case left:
                 snake.get(0).x--;
-                if(snake.get(0).y < 0) {
+                if(snake.get(0).x < 0) {
                     gameOver = true;
                 }
                 break;
