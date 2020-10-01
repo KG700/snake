@@ -21,6 +21,16 @@ public class Main extends Application {
     static int cornerSize = 25;
     static List<Corner> snake = new ArrayList<>();
 
+    public static class Corner {
+        int x;
+        int y;
+
+        public Corner(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
