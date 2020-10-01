@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Main extends Application {
 
@@ -21,6 +22,8 @@ public class Main extends Application {
     static int cornerSize = 25;
     static List<Corner> snake = new ArrayList<>();
     static Dir direction = Dir.left;
+    static boolean gameOver = false;
+    static Random rand = new Random();
 
     public enum Dir {
         left, right, up, down
