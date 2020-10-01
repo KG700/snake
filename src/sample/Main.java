@@ -5,6 +5,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -42,6 +44,8 @@ public class Main extends Application {
     }
 
     public void start(Stage primaryStage) throws Exception{
+        newFood();
+
         VBox root = new VBox();
         Canvas c = new Canvas(width * cornerSize, height * cornerSize);
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -62,8 +66,28 @@ public class Main extends Application {
             }
         }.start();
 //        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Scene scene = new Scene(root, width * cornerSize, height * cornerSize)
+
+        //control
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+            if(key.getCode() == KeyCode.W ) {
+                direction = Dir.up;
+            }
+            if(key.getCode() == KeyCode.A) {
+                direction = Dir.left;
+            }
+            if(key.getCode() == KeyCode.S ) {
+                direction = Dir.right;
+            }
+            if(key.getCode() == KeyCode.D ) {
+                direction = Dir.down;
+            }
+        });
+
+
+
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
