@@ -162,6 +162,24 @@ public class Main extends Application {
 
         //random food colour
         Color cc = Color.WHITE;
+
+        switch (foodColour) {
+            case 0: cc = Color.PURPLE;
+            break;
+            case 1: cc = Color.LIGHTBLUE;
+                break;
+            case 2: cc = Color.YELLOW;
+                break;
+            case 3: cc = Color.PINK;
+                break;
+            case 4: cc = Color.ORANGE;
+                break;
+        }
+        gc.setFill(cc);
+        gc.fillOval(foodX * cornerSize, foodY * cornerSize, cornerSize, cornerSize);
+
+        //snake
+
     }
 
 
