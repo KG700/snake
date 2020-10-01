@@ -73,16 +73,16 @@ public class Main extends Application {
 
         //control
         scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-            if(key.getCode() == KeyCode.W ) {
+            if(key.getCode() == KeyCode.UP ) {
                 direction = Dir.up;
             }
-            if(key.getCode() == KeyCode.A) {
+            if(key.getCode() == KeyCode.LEFT) {
                 direction = Dir.left;
             }
-            if(key.getCode() == KeyCode.S ) {
+            if(key.getCode() == KeyCode.RIGHT ) {
                 direction = Dir.right;
             }
-            if(key.getCode() == KeyCode.D ) {
+            if(key.getCode() == KeyCode.DOWN ) {
                 direction = Dir.down;
             }
         });
