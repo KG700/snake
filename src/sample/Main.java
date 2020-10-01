@@ -20,6 +20,11 @@ public class Main extends Application {
     static int foodY = 0;
     static int cornerSize = 25;
     static List<Corner> snake = new ArrayList<>();
+    static Dir direction = Dir.left;
+
+    public enum Dir {
+        left, right, up, down
+    }
 
     public static class Corner {
         int x;
