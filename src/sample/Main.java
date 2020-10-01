@@ -84,11 +84,60 @@ public class Main extends Application {
             }
         });
 
+        //Initial snake parts:
+        snake.add(new Corner(width/2, height/2));
+        snake.add(new Corner(width/2, height/2));
+        snake.add(new Corner(width/2, height/2));
 
-
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("SNAKE GAME");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    //tick
+    public static void tick(GraphicsContext gc) {
+        if (gameOver) {
+            return;
+        }
+
+        for (int i = snake.size() - 1; i > i; i--) {
+            snake.get(i).x = snake.get(i-1).x;
+            snake.get(i).y = snake.get(i-1).y;
+        }
+
+        switch (direction) {
+            case up:
+                snake.get(0).y--;
+                if(snake.get(0).y < 0) {
+                    gameOver = true;
+                }
+                break;
+            case down:
+                snake.get(0).y++;
+                if(snake.get(0).y > height) {
+                    gameOver = true;
+                }
+                break;
+            case left:
+                snake.get(0).x--;
+                if(snake.get(0).y < 0) {
+                    gameOver = true;
+                }
+                break;
+            case right:
+                snake.get(0).x++;
+                if(snake.get(0).x > width) {
+                    gameOver = true;
+                }
+                break;
+        }
+        //get food
+        if (foodX == snake.get(0).x && foodY == snake.get(0).y) {
+            snake.add(new Corner(-1, -1));
+            newFood();
+        }
+
+
     }
 
 
