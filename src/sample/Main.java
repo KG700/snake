@@ -8,6 +8,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -57,6 +59,7 @@ public class Main extends Application {
             public void handle (long now) {
                 if (lastTick == 0) {
                     lastTick = now;
+                    tick(gc);
                     return;
                 }
                 if (now - lastTick > 1000000000 / speed) {
@@ -66,7 +69,7 @@ public class Main extends Application {
             }
         }.start();
 //        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Scene scene = new Scene(root, width * cornerSize, height * cornerSize)
+        Scene scene = new Scene(root, width * cornerSize, height * cornerSize);
 
         //control
         scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
@@ -97,6 +100,9 @@ public class Main extends Application {
     //tick
     public static void tick(GraphicsContext gc) {
         if (gameOver) {
+            gc.setFill(Color.RED);
+            gc.setFont(new Font("", 50));
+            gc.fillText("GAME OVER", 100, 250);
             return;
         }
 
@@ -137,7 +143,25 @@ public class Main extends Application {
             newFood();
         }
 
+        //self destroy (if snake hits itself)
+        for (int i = 1; i < snake.size(); i++) {
+            if(snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y) {
+                gameOver = true;
+            }
+        }
 
+        // fill
+        // background
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, width*cornerSize, height*cornerSize);
+
+        //score
+        gc.setFill(Color.WHITE);
+        gc.setFont(new Font("", 30));
+        gc.fillText("Score:", +(speed-6), 10, 30);
+
+        //random food colour
+        Color cc = Color.WHITE;
     }
 
 
@@ -148,7 +172,7 @@ public class Main extends Application {
             foodY = rand.nextInt(height);
 
             for (Corner c:snake) {
-                if (x == foodX && y == foodY) {
+                if (c.x == foodX && c.y == foodY) {
                     continue start;
                 }
             }
