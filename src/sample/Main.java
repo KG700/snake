@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.VBox;
@@ -15,7 +16,7 @@ public class Main extends Application {
 
     //variables
     static int speed = 5;
-    static int foodcolour = 0;
+    static int foodColour = 0;
     static int width = 20;
     static int height = 20;
     static int foodX = 0;
@@ -61,11 +62,28 @@ public class Main extends Application {
             }
         }.start();
 //        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-//        primaryStage.setTitle("Hello World");
-//        primaryStage.setScene(new Scene(root, 300, 275));
-//        primaryStage.show();
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.show();
     }
 
+
+    //food
+    public static void newFood() {
+        start: while(true) {
+            foodX = rand.nextInt(width);
+            foodY = rand.nextInt(height);
+
+            for (Corner c:snake) {
+                if (x == foodX && y == foodY) {
+                    continue start;
+                }
+            }
+            foodColour = rand.nextInt(5);
+            speed++;
+            break;
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
