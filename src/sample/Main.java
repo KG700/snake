@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -45,6 +46,20 @@ public class Main extends Application {
         GraphicsContext gc = c.getGraphicsContext2D();
         root.getChildren().add(c);
 
+        new AnimationTimer() {
+            long lastTick = 0;
+
+            public void handle (long now) {
+                if (lastTick == 0) {
+                    lastTick = now;
+                    return;
+                }
+                if (now - lastTick > 1000000000 / speed) {
+                    lastTick = now;
+                    //
+                }
+            }
+        }.start();
 //        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 //        primaryStage.setTitle("Hello World");
 //        primaryStage.setScene(new Scene(root, 300, 275));
